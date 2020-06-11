@@ -12,8 +12,8 @@ on:
 jobs:
   pull_request:
     env: 
-      DB_CONNECTION = ${{ secrets.DB_CONNECTION }}
-      TOKEN_SECRET = ${{ secrets.TOKEN_SECRET }}
+      DB_CONNECTION = mongodb+srv://adminmarc:yGlabn12@cluster0-luwgd.mongodb.net/Auth?retryWrites=true&w=majority
+      TOKEN_SECRET = afjbkjasbfkabefabfkasfbadkfbasmfajcgv
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
