@@ -10,8 +10,9 @@ on:
     branches: [ master ]
 
 jobs:
-  env_credentials:
+  secret_credentials:
       steps:
+      - name: .env credentials
         env:
           DB_CONNECTION = ${{ secrets.DB_CONNECTION }}
           TOKEN_SECRET =  ${{ secrets.TOKEN_SECRET }}
