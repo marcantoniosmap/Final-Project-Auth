@@ -10,8 +10,8 @@ on:
     branches: [ master ]
 
 env: 
-  DB_CONNECTION: mongodb+srv://adminmarc:yGlabn12@cluster0-luwgd.mongodb.net/Auth?retryWrites=true&w=majority
-  TOKEN_SECRET: afjbkjasbfkabefabfkasfbadkfbasmfajcgv
+  DB_CONNECTION: ${{ secrets.DB_CONNECTION }}
+  TOKEN_SECRET: ${{ secrets.TOKEN_SECRET }}
 
 jobs:
   pull_request:

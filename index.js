@@ -29,6 +29,7 @@ app.get('/',(req,res)=>{
 app.use('/api/user', authRoute);
 
 
-app.listen(8000);
+const server = app.listen(8000);
+server.close();
 
 module.exports=app
