@@ -12,8 +12,8 @@ on:
 jobs:
   pull_request:
     env:
-      DB_CONNECTION = secrets.DB_CONNECTION
-      TOKEN_SECRET = secrets.TOKEN_SECRET
+      DB_CONNECTION = ${{ secrets.DB_CONNECTION }}
+      TOKEN_SECRET = ${{ secrets.TOKEN_SECRET }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
