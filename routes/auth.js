@@ -8,10 +8,10 @@ router.post('/register', async(req,res) =>{
 
     //validate before submit
     const {error}= registerValidation(req.body);
-    if (error) return res.send(error.details[0].message);
+    if (error) return res.status(400).send(error.details[0].message);
     
     const emailExist = await User.findOne({email: req.body.email});
-    if (emailExist) return res.send('Email Already exists');
+    if (emailExist) return res.status(400).send('Email Already exists');
 
 
     //HASH THE PASSWORD
@@ -27,7 +27,7 @@ router.post('/register', async(req,res) =>{
          const savedUser = await user.save();
          res.send({status:'success',user: user._id});
      }catch(err){
-         res.send({status:'failed',info:'error occured'});
+         res.status(400).send({status:'failed',info:'error occured'});
      }
 });
 
@@ -75,13 +75,12 @@ router.get('/checkToken/:token',async(req,res)=>{
 });
 
 router.get('/',async (req,res)=>{
-    // const user = await User.findById(req.params.id);
-    // const userRet={
-    //     _id:user._id,   
-    //     name:user.name,
-    //     email:user.email,
-    // }
-    res.send({test:"success"});
+    const user = await User.find();
+    if (user){
+        res.status(200).send({ status: "OK" });
+    }else{
+        res.status(400).send({err:"no good"});
+    }
 });
 
 

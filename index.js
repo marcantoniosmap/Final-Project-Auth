@@ -32,3 +32,5 @@ app.use('/api/user', authRoute);
 
 
 app.listen(8000);
+
+module.exports=app
