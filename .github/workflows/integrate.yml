@@ -10,9 +10,13 @@ on:
     branches: [ master ]
 
 jobs:
-  test_pull_request:
+  pull_request:
     runs-on: ubuntu-latest
     steps:
+      - name: .env credentials
+        env:
+          DB_CONNECTION = ${{ secrets.DB_CONNECTION }}
+          TOKEN_SECRET =  ${{ secrets.TOKEN_SECRET }}
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
         with:
