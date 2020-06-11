@@ -13,13 +13,14 @@ jobs:
   pull_request:
     runs-on: ubuntu-latest
     steps:
-      env:
-        DB_CONNECTION = ${{ secrets.DB_CONNECTION }}
-        TOKEN_SECRET = ${{ secrets.TOKEN_SECRET }}
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
         with:
           node-version: 12.3
       - run: npm install
+      - name: testing
       - run: npm test
+      env: 
+        DB_CONNECTION = ${{ secrets.DB_CONNECTION }}
+        TOKEN_SECRET = ${{ secrets.TOKEN_SECRET }}
       - run: npm run build --if-present
