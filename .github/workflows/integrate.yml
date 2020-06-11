@@ -9,6 +9,10 @@ on:
   pull_request:
     branches: [ master ]
 
+env: 
+  DB_CONNECTION = mongodb+srv://adminmarc:yGlabn12@cluster0-luwgd.mongodb.net/Auth?retryWrites=true&w=majority
+  TOKEN_SECRET = afjbkjasbfkabefabfkasfbadkfbasmfajcgv
+
 jobs:
   pull_request:
     runs-on: ubuntu-latest
@@ -18,8 +22,5 @@ jobs:
         with:
           node-version: 12.3
       - run: npm install
-        env: 
-          DB_CONNECTION = mongodb+srv://adminmarc:yGlabn12@cluster0-luwgd.mongodb.net/Auth?retryWrites=true&w=majority
-          TOKEN_SECRET = afjbkjasbfkabefabfkasfbadkfbasmfajcgv
       - run: npm test
       - run: npm run build --if-present
