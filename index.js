@@ -7,6 +7,7 @@ const cors= require('cors');
 
 //import routes
 const authRoute = require('./routes/auth');
+const userProjectRoute= require('./routes/userProject');
 
 dotenv.config();
 
@@ -25,10 +26,9 @@ app.use(cors());
 app.get('/',(req,res)=>{
     res.send('we are here');
 });
-
+    
 app.use('/api/user', authRoute);
+app.use('/api/userProject',userProjectRoute);
 
 
 app.listen(8000);
-
-module.exports=app

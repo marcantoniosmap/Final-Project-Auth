@@ -7,3 +7,5 @@ test("GET /", done => {
     .expect(200, JSON.stringify({ status: "OK" }))
     .end(done)
 })
+
+app.close();

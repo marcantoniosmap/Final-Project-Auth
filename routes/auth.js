@@ -3,6 +3,8 @@ const User = require('../model/User');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const {registerValidation,loginValidation}= require('../validation')
+const verify = require('./verifyToken');
+
 
 router.post('/register', async(req,res) =>{
 
@@ -51,6 +53,7 @@ router.post('/login', async (req, res)=>{
     res.send({token:token,id:user._id});
 });
 
+
 router.get('/checkToken/:token',async(req,res)=>{
     const token = req.params.token;
     if(!token) res.status(401).send('Access Denied');
@@ -73,6 +76,21 @@ router.get('/checkToken/:token',async(req,res)=>{
   
 
 });
+
+router.get('/:id',verify,async(req,res)=>{
+   try{
+    const user = await User.findOne({_id:req.params.id});
+    const retUser={
+        _id: user._id,
+        name: user.name,
+        email:user.email
+    };
+    res.status(200).send(retUser);
+   }catch(err){
+       res.status(400).send({err:err});
+   }
+ 
+})
 
 router.get('/',async (req,res)=>{
     const user = await User.find();
