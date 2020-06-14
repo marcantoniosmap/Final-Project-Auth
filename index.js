@@ -23,7 +23,7 @@ app.use(cors());
 
 
 //ROUTES
-app.get('/',(req,res)=>{
+app.get('/',(req,res)=>{    
     res.send('we are here');
 });
     

@@ -15,19 +15,19 @@ router.get('/',verify,async(req,res)=>{
     const userProject = await UserProject.find({user_id:user_id});
 
     const projectArr=userProject.map(project=>project.project_id);
-    const getProjects = async (url,idList,token) =>{
-      try{
-        const userProject = await fetch(url,
-          {method:'POST', headers:{
-            "Content-Type":'application/json',
-            "auth-token":token
-          }, body:JSON.stringify({
-            idList:idList})});
-          const json = await userProject.json();
-          return json;
-        } catch (err){
-          console.log(err);
-        }
+      const getProjects = async (url,idList,token) =>{
+        try{
+          const userProject = await fetch(url,
+            {method:'POST', headers:{
+              "Content-Type":'application/json',
+              "auth-token":token
+            }, body:JSON.stringify({
+              idList:idList})});
+            const json = await userProject.json();
+            return json;
+          } catch (err){
+            console.log(err);
+          }
     }
     const json = await getProjects(GETMULTIPLEPROJECTURL,projectArr,req.header('auth-token'));
 
