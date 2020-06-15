@@ -1,15 +1,7 @@
-FROM node:9-slim
-# RUN apk add --no-cache nodejs npm
-
-
-WORKDIR /app
-
-COPY . /app
-
+FROM node:8-alpine
+RUN mkdir -p /usr/src/app
+WORKDIR /usr/src/app
+COPY . .
 RUN npm install
-
-EXPOSE 8000
-
-ENTRYPOINT ["node"]
-
-CMD ['index.js']
+EXPOSE 3000
+CMD [ "node", "server.js" ]
