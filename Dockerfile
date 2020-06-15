@@ -11,7 +11,6 @@ RUN npm install
 
 EXPOSE 8000
 
-
 ENTRYPOINT ["node"]
 
 CMD ['index.js']
