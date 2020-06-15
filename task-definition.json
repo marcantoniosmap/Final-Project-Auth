@@ -14,7 +14,10 @@
           "awslogs-stream-prefix": "ecs"
         }
       },
-      "entryPoint": null,
+      "entryPoint": [
+        "sh",
+        "-c"
+      ],
       "portMappings": [
         {
           "hostPort": 80,
@@ -22,7 +25,9 @@
           "containerPort": 80
         }
       ],
-      "command": null,
+      "command": [
+        "/bin/sh -c \"echo '<html> <head> <title>Amazon ECS Sample App</title> <style>body {margin-top: 40px; background-color: #333;} </style> </head><body> <div style=color:white;text-align:center> <h1>Amazon ECS Sample App</h1> <h2>Congratulations!</h2> <p>Your application is now running on a container in Amazon ECS.</p> </div></body></html>' >  /usr/local/apache2/htdocs/index.html && httpd-foreground\""
+      ],
       "linuxParameters": null,
       "cpu": 256,
       "environment": [],
@@ -37,7 +42,7 @@
       "memoryReservation": 512,
       "volumesFrom": [],
       "stopTimeout": null,
-      "image": "nginx:latest",
+      "image": "httpd:2.4",
       "startTimeout": null,
       "firelensConfiguration": null,
       "dependsOn": null,
@@ -45,7 +50,7 @@
       "interactive": null,
       "healthCheck": null,
       "essential": true,
-      "links": null,
+      "links": [],
       "hostname": null,
       "extraHosts": null,
       "pseudoTerminal": null,
@@ -54,7 +59,7 @@
       "dockerLabels": null,
       "systemControls": null,
       "privileged": null,
-      "name": "nginx"
+      "name": "sample-app"
     }
   ],
   "placementConstraints": [],
@@ -64,7 +69,7 @@
     "EC2",
     "FARGATE"
   ],
-  "taskDefinitionArn": "arn:aws:ecs:ap-southeast-1:976078281265:task-definition/first-run-task-definition:1",
+  "taskDefinitionArn": "arn:aws:ecs:ap-southeast-1:976078281265:task-definition/first-run-task-definition:6",
   "family": "first-run-task-definition",
   "requiresAttributes": [
     {
@@ -110,7 +115,7 @@
   ],
   "networkMode": "awsvpc",
   "cpu": "256",
-  "revision": 2,
+  "revision": 6,
   "status": "ACTIVE",
   "inferenceAccelerators": null,
   "proxyConfiguration": null,
