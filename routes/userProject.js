@@ -5,8 +5,10 @@ const UserProject = require('../model/UserProject');
 const fetch = require('node-fetch');
 const User = require('../model/User');
 
-const GETPROJECTURL='http://localhost:9000/api/project/';
-const GETMULTIPLEPROJECTURL='http://localhost:9000/api/project/getProjects';
+
+const domainForProjectAPI = 'CogetherProject-env.eba-hmw9hpih.ap-southeast-1.elasticbeanstalk.com'
+const GETPROJECTURL=domainForProjectAPI+'/api/project/';
+const GETMULTIPLEPROJECTURL=domainForProjectAPI+'/api/project/getProjects';
 
 
 router.get('/',verify,async(req,res)=>{
