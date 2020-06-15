@@ -13,7 +13,6 @@ dotenv.config();
 
 const port = process.env.PORT || 8000
 
-
 //Connect to DB
 mongoose.connect(process.env.DB_CONNECTION,{ useNewUrlParser: true,useUnifiedTopology: true,useFindAndModify: false },()=>{
     console.log("connected to db");
