@@ -1,12 +1,18 @@
-const app = require('./server');
+const express = require('express');
+const app = express();
+const router = require('express').Router();
+const mongoose = require('mongoose');
+const dotenv = require('dotenv');
+const cors = require('cors');
+
 //import routes
 const authRoute = require('./routes/auth');
-const userProjectRoute= require('./routes/userProject');
+const userProjectRoute = require('./routes/auth');
 
 dotenv.config();
 
+const port = process.env.PORT || 8000
 
-const port = process.env.PORT || 5000;
 
 //Connect to DB
 mongoose.connect(process.env.DB_CONNECTION,{ useNewUrlParser: true,useUnifiedTopology: true,useFindAndModify: false },()=>{
@@ -17,16 +23,15 @@ mongoose.connect(process.env.DB_CONNECTION,{ useNewUrlParser: true,useUnifiedTop
 app.use(express.json());
 app.use(cors());
 
-const port = process.env.port || 5000;
 
 //ROUTES
-app.get('/',(req,res)=>{    
+app.get('/',(req,res)=>{
     res.send('we are here');
 });
-    
+
 app.use('/api/user', authRoute);
 app.use('/api/userProject',userProjectRoute);
 
-//just so i can commit this time
-
-app.listen(port);
+app.listen(port,()=>{
+    console.log(`listening on port ${port}`)
+})
