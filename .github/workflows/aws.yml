@@ -78,6 +78,6 @@ jobs:
       uses: aws-actions/amazon-ecs-deploy-task-definition@v1
       with:
         task-definition: task-definition.json
-        service: nginx-service
+        service: authAndUser
         cluster: cogether-auth
         wait-for-service-stability: true
