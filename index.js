@@ -1,5 +1,4 @@
 const app = require('./server');
-
 //import routes
 const authRoute = require('./routes/auth');
 const userProjectRoute= require('./routes/userProject');
@@ -16,6 +15,7 @@ mongoose.connect(process.env.DB_CONNECTION,{ useNewUrlParser: true,useUnifiedTop
 app.use(express.json());
 app.use(cors());
 
+const port = process.env.port || 5000;
 
 //ROUTES
 app.get('/',(req,res)=>{    
@@ -27,4 +27,4 @@ app.use('/api/userProject',userProjectRoute);
 
 //just so i can commit this time
 
-app.listen(80);
+app.listen(port);
