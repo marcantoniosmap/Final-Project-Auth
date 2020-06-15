@@ -7,6 +7,7 @@ const User = require('../model/User');
 
 
 const domainForProjectAPI = 'CogetherProject-env.eba-hmw9hpih.ap-southeast-1.elasticbeanstalk.com'
+// const domainForProjectAPI = 'localhost:9000'
 const GETPROJECTURL=domainForProjectAPI+'/api/project/';
 const GETMULTIPLEPROJECTURL=domainForProjectAPI+'/api/project/getProjects';
 
@@ -15,24 +16,24 @@ router.get('/',verify,async(req,res)=>{
   const user_id= req.user._id;
   try{
     const userProject = await UserProject.find({user_id:user_id});
-
     const projectArr=userProject.map(project=>project.project_id);
-      const getProjects = async (url,idList,token) =>{
-        try{
-          const userProject = await fetch(url,
-            {method:'POST', headers:{
-              "Content-Type":'application/json',
-              "auth-token":token
-            }, body:JSON.stringify({
-              idList:idList})});
+    const getProjects = async (url,idList,token) =>{
+      try{
+        const userProject = await fetch(url,
+          {method:'POST', headers:{
+            "Content-Type":'application/json',
+            "auth-token":token
+          }, body:JSON.stringify({
+            idList:idList})});
             const json = await userProject.json();
             return json;
           } catch (err){
-            console.log(err);
+            return(err);
           }
-    }
-    const json = await getProjects(GETMULTIPLEPROJECTURL,projectArr,req.header('auth-token'));
-
+        }
+        console.log(GETMULTIPLEPROJECTURL,projectArr,req.header('auth-token'));
+        const json = await getProjects(GETMULTIPLEPROJECTURL,projectArr,req.header('auth-token'));
+        
     res.status(200).send(json);
   } catch(err){
     res.status(400).send({err:err});
