@@ -86,8 +86,8 @@ router.get('/checkToken/:token',async(req,res)=>{
 });
 
 
-router.put('/update/:id',verify,async(req,res)=>{
-    const user = await User.findOne({_id:req.params.id});
+router.put('/update',verify,async(req,res)=>{
+    const user = await User.findOne({_id:req.body._id});
     if (user.id===req.user._id){
         const updateUser = await User.updateOne(
             {_id:user.id},
