@@ -6,7 +6,6 @@ const fetch = require('node-fetch');
 const User = require('../model/User');
 
 
-// const domainForProjectAPI = 'http://CogetherProject-env.eba-hmw9hpih.ap-southeast-1.elasticbeanstalk.com'
 const domainForProjectAPI = 'https://project.cogether.me'
 // const domainForProjectAPI = 'http://localhost:9000'
 const GETPROJECTURL=domainForProjectAPI+'/api/project/';
