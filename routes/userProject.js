@@ -80,6 +80,20 @@ router.delete('/delete/:id',verify,async(req,res)=>{
 
 })
 
+router.delete('/deleteCollaborator',verify,async(req,res)=>{
+  const project_id = req.body.project_id;
+  const deletedCollab = req.body.idList;
+  const error=false;
+  for (id of deletedCollab){
+    try{
+      const temp = await UserProject.find({project_id:project_id,user_id:id});
+    }catch(err){
+      error=true;
+    }
+  }
+  return error ? res.status(400).send({status:err}):res.status(200).send({status:'OK'});
+});
+
 router.post('/collab',verify,async(req,res)=>{
   const user = req.user._id;
   const project_id = req.body.project_id;
