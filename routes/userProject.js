@@ -7,7 +7,7 @@ const User = require('../model/User');
 
 
 const domainForProjectAPI = 'https://project.cogether.me'
-// const domainForProjectAPI = 'http://localhost:9000'
+// const domainForProjectAPI = 'http://localhost:9000';
 const GETPROJECTURL=domainForProjectAPI+'/api/project/';
 const GETMULTIPLEPROJECTURL=domainForProjectAPI+'/api/project/getProjects'
 
@@ -84,9 +84,9 @@ router.delete('/deleteCollaborator',verify,async(req,res)=>{
   const project_id = req.body.project_id;
   const deletedCollab = req.body.idList;
   const error=false;
-  for (id of deletedCollab){
+  for (user_id of deletedCollab){
     try{
-      const temp = await UserProject.find({project_id:project_id,user_id:id});
+      const temp = await UserProject.deleteOne({project_id:project_id,user_id:user_id});
     }catch(err){
       error=true;
     }
