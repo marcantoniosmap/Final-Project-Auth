@@ -37,7 +37,7 @@ router.get('/',verify,async(req,res)=>{
     console.log(json);
     res.status(200).send(json);
   } catch(err){
-    return res.status(400).send({err:err});
+      res.status(400).send({err:err});
   }
 
 
