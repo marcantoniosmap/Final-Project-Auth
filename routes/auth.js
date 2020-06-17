@@ -164,7 +164,6 @@ router.delete('/deleteUser/:id',verify,async(req,res)=>{
 })
 
 router.get('/:id',verify,async(req,res)=>{
-    // if (req.user._id !== req.params.id) return res.status(400).send({err:'unauthorized'});
    try{
     const user = await User.findOne({_id:req.params.id});
     const projectOwned = await UserProject.find({user_id:req.params.id,ownership_type:"owner"});
